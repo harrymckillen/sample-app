@@ -1,0 +1,63 @@
+<div class="mt-12 md:mt-32 mx-auto w-11/12 md:w-7/12">
+
+  <form [formGroup]="createPasswordForm" (submit)="submitCreatePasswordForm()">
+    <h1 class="text-2xl text-gray-900">Create password</h1>
+
+    <p class="mt-2 mb-10 text-gray-600">Enter the code we sent to <strong>{{currentUser.email}}</strong> to create a password</p>
+
+    <div class="relative w-full appearance-none label-floating">
+      <input formControlName="verificationCode" class="tracking-wide py-2 px-4 mb-2 leading-relaxed appearance-none block w-full bg-gray-200 border border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-500 text-gray-700"
+      id="verificationCode" name="verificationCode" type="text" placeholder="Enter Verification Code" maxlength="6" required [ngClass]="{'border-custom-teal' : createPasswordForm.controls['verificationCode'].valid, 'border-red-500' : createPasswordForm.controls['verificationCode'].invalid && (createPasswordForm.controls['verificationCode'].dirty || createPasswordForm.controls['verificationCode'].touched)}">
+
+      <label for="verificationCode" class="absolute tracking-wide py-2 px-4 mb-4 opacity-0 leading-tight block top-0 left-0 cursor-text">
+          Enter Verification Code
+      </label>
+
+      <div *ngIf="createPasswordForm.controls['verificationCode'].invalid && (createPasswordForm.controls['verificationCode'].dirty || createPasswordForm.controls['verificationCode'].touched)" class="text-red-600 -mt-2 w-full">
+        <span *ngIf="createPasswordForm.controls['verificationCode'].hasError('minlength') || createPasswordForm.controls['verificationCode'].hasError('isNumeric')" class="block">Please enter a 6 digit verification code.</span>
+      </div>
+    </div>
+
+    <a class="mt-4 mb-8 inline-block text-custom-orange" [routerLink]="" (click)="resendCode()">Resend code</a>
+
+    <div class="relative w-full appearance-none label-floating">
+      <input #passwordField formControlName="password" class="tracking-wide py-2 px-4 mb-3 leading-relaxed appearance-none block w-full bg-gray-200 border border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-500 text-gray-700"
+      id="password" name="password" type="password" placeholder="Password" required [ngClass]="{'border-custom-teal' : createPasswordForm.controls['password'].valid, 'border-red-500' : createPasswordForm.controls['password'].invalid && (createPasswordForm.controls['password'].dirty || createPasswordForm.controls['password'].touched)}">
+      <label for="password" class="absolute tracking-wide py-2 px-4 mb-4 opacity-0 leading-tight block top-0 left-0 cursor-text">
+          Password
+      </label>
+
+      <div *ngIf="!createPasswordForm.controls['password'].hasError('minlength') && !createPasswordForm.controls['password'].hasError('hasUppercaseAndLowercase') && !createPasswordForm.controls['password'].hasError('hasNumber') && createPasswordForm.controls['password'].hasError('overallValidity')" class="text-red-600 -mt-2 w-full">
+       <span  class="block">It looks like an unsupported character has been added, and it no longer conforms to the guide below.</span>
+     </div>
+
+      <a #toggleButton class="eye-icon absolute top-0 right-0 mr-5" [routerLink]="" (click)="toggleVisibility()"><span class="sr-only">Toggle Password Visibility</span></a>
+    </div>
+
+    <div class="block">
+      <p class="mt-4 text-gray-600">Please choose a password that contains:</p>
+
+      <ul class="mt-3 ml-4 text-gray-600">
+        <li>
+          <span class="-mb-1 w-3 h-3 rounded-full mr-1 leading-5 tick tick-small tick-white" [ngClass]="createPasswordForm.controls['password'].hasError('required') || createPasswordForm.controls['password'].hasError('minlength')  ? 'bg-gray-400' : 'bg-custom-teal'"></span>
+          At least 8 characters
+        </li>
+        <li>
+          <span class="-mb-1 w-3 h-3 rounded-full mr-1 leading-5 tick tick-small tick-white" [ngClass]="createPasswordForm.controls['password'].hasError('required') || createPasswordForm.controls['password'].hasError('hasUppercaseAndLowercase') ? 'bg-gray-400' : 'bg-custom-teal'"></span>
+          Upper and lowercase letters
+        </li>
+        <li>
+          <span class="-mb-1 w-3 h-3 rounded-full mr-1 leading-5 tick tick-small tick-white" [ngClass]="createPasswordForm.controls['password'].hasError('required') || createPasswordForm.controls['password'].hasError('hasNumber')  ? 'bg-gray-400' : 'bg-custom-teal'"></span>
+          One number
+        </li>
+        <li>
+          <span class="-mb-1 w-3 h-3 rounded-full mr-1 leading-5 tick tick-small tick-white" [ngClass]="createPasswordForm.controls['password'].hasError('required') || createPasswordForm.controls['password'].hasError('hasSpecialCharacters') ? 'bg-gray-400' : 'bg-custom-teal'"></span>
+          One special character (&amp;!@%£)
+        </li>
+      </ul>
+    </div>
+
+    <button [disabled]="createPasswordForm.invalid" type="submit" class="block w-full my-8 bg-custom-orange py-4 px-6 text-white text-center rounded-md disabled:opacity-50">Create account</button>
+
+  </form>
+</div>

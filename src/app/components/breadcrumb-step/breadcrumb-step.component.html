@@ -1,0 +1,15 @@
+<div class="hidden md:block w-48 mx-auto">
+
+  <div [ngClass]="{'text-gray-500': complete}"
+    class="flex py-3 leading-8">
+
+    <span class="mt-1 text-custom-blue w-6 h-6 rounded-full leading-6 text-xs text-center mr-3 font-bold" [ngClass]="{'bg-custom-orange tick tick-custom-blue': complete, 'bg-white': !complete}">
+
+      <span *ngIf="!complete">{{number}}</span>
+
+    </span>
+    {{label}}
+
+  </div>
+
+</div>

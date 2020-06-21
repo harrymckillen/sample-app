@@ -1,0 +1,20 @@
+<div class="mt-12 md:mt-32 mx-auto w-11/12 md:w-7/12">
+
+  <h1 class="text-2xl text-gray-900">Your details</h1>
+
+  <p class="mt-2 mb-6 text-gray-700">Please enter the email address you use for your account.</p>
+
+  <form #detailsForm (submit)="submitDetailsForm(detailsForm)">
+    <div class="relative w-full appearance-none label-floating">
+      <input class="tracking-wide py-2 px-4 mb-3 leading-relaxed appearance-none block w-full bg-gray-200 border border-gray-200 rounded focus:outline-none focus:bg-white focus:border-gray-500 text-gray-700"
+      id="email" name="email" type="email" placeholder="Email Address" required>
+
+      <label for="email" class="absolute tracking-wide py-2 px-4 mb-4 opacity-0 leading-tight block top-0 left-0 cursor-text">
+          Email Address
+      </label>
+    </div>
+
+    <button class="block w-full my-8 bg-custom-orange py-4 px-8 text-white text-center rounded-md">Next step</button>
+  </form>
+
+</div>

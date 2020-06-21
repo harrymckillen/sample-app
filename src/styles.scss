@@ -1,0 +1,100 @@
+// default styles
+
+body {
+  height: 100%;
+  width: 100%;
+
+  .logo {
+    display: block;
+    width: 105px;
+    height: 32px;
+    background-size: auto;
+    background-size: 105px 32px;
+
+  }
+
+
+  .tick {
+    position: relative;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+
+    &::before {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        height: 25%;
+        width: 2px;
+        content: "";
+        transform: translateX(10px) rotate(-45deg);
+        transform-origin: left bottom;
+    }
+
+    &::after {
+        position: absolute;
+        left: 0;
+        bottom: 25%;
+        height: 2px;
+        width: 50%;
+        content: "";
+        transform: translateX(10px) rotate(-45deg);
+        transform-origin: left bottom;
+    }
+
+    &.tick-small {
+      width: 1rem;
+      height: 1rem;
+
+      &::before {
+        left:-20%;
+        top: 46%;
+        height: 24%;
+        width: 2px;
+      }
+
+
+      &::after {
+        left:-20%;
+        bottom: 25%;
+        height: 2px;
+        width: 46%;
+      }
+    }
+
+    &.tick-white{
+      &::before {
+        background-color: #FFF;
+      }
+      &::after {
+        background-color: #FFF;
+      }
+    }
+
+    &.tick-custom-blue{
+      &::before {
+        background-color: #1A3344;
+      }
+      &::after {
+        background-color: #1A3344;
+      }
+    }
+  }
+
+  .label-floating {
+    input:not(:placeholder-shown) {
+      padding-top: 1.1rem;
+
+      & ~ label {
+        font-size: 0.6rem;
+        transition: all 0.2s ease-in-out;
+        color: #93A3B1;
+        opacity: 1;
+      }
+
+      & ~ .eye-icon {
+        margin-top: 1.1rem;
+      }
+    }
+  }
+}

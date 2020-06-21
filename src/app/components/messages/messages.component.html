@@ -1,0 +1,4 @@
+<div *ngIf="message" class="fixed z-10 top-0 left-0 w-full p-2 text-center text-white" [ngClass]="message.severity">
+  <p class="w-9/12 mx-auto md:w-full">{{message.text}}</p>
+  <span class="w-5 h-5 leading-4 absolute right-0 top-0 mt-2 mr-2 font-bold text-gray-700 hover:text-white text-2xl" aria-label="Close" (click)="close()">&times;</span>
+</div>

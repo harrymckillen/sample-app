@@ -1,0 +1,17 @@
+<div class="hidden md:block w-48 mx-auto">
+  <div *ngFor="let step of breadcrumbs">
+    <app-breadcrumb-step [number]="step.number" [label]="step.label" [complete]="step.complete"></app-breadcrumb-step>
+  </div>
+</div>
+
+<div class="block md:hidden mx-auto w-11/12 md:w-2/3">
+  <div class="mb-2 bg-gray-300 h-2 rounded-full">
+    <div class="bg-custom-orange h-2 rounded-full"
+      [ngClass]="{
+        'block w-1/3': completeSteps === 1,
+        'block w-2/3': completeSteps === 2,
+        'block w-full': completeSteps === 3
+      }"></div>
+  </div>
+  <p class="text-gray-600">Step {{completeSteps}} of 3</p>
+</div>
